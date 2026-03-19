@@ -2,17 +2,15 @@
 
 Scans your Chess.com game history and surfaces the moves you spent the most time thinking about.
 
-## Setup
+## Download
 
-You need [Node.js](https://nodejs.org) installed (v18+ recommended).
+Go to the [Releases](../../releases) page and download the installer for your platform:
 
-```bash
-# 1. Install dependencies (one time only)
-npm install
+- **Windows** — `.exe`
+- **Mac** — `.dmg`
+- **Linux** — `.AppImage`
 
-# 2. Run the app
-npm start
-```
+> **Mac users:** If you see a warning that the app is from an unidentified developer, right-click the app and choose **Open** to bypass it.
 
 ## Usage
 

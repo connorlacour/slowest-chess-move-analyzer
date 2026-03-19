@@ -10,7 +10,9 @@
     "dist": "electron-vite build && electron-builder build",
     "dist:mac": "electron-vite build && electron-builder build --mac",
     "dist:win": "electron-vite build && electron-builder build --win",
-    "dist:linux": "electron-vite build && electron-builder build --linux"
+    "dist:linux": "electron-vite build && electron-builder build --linux",
+    "dev:web": "vite serve src/renderer",
+    "build:web": "vite build"
   },
   "build": {
     "appId": "com.connorlacour.slowest-chess-move-analyzer",
