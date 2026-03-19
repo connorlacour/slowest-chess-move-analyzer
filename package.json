@@ -2,6 +2,7 @@
   "name": "chess-time-analyzer",
   "version": "1.0.0",
   "description": "Chess.com think time analyzer",
+  "author": "connorlacour",
   "main": "out/main/index.js",
   "scripts": {
     "dev": "electron-vite dev",

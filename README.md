@@ -2,6 +2,8 @@
 
 Scans your Chess.com game history and surfaces the moves you spent the most time thinking about.
 
+**[Try it in your browser](https://connorlacour.github.io/slowest-chess-move-analyzer/)**
+
 ## Download
 
 Go to the [Releases](../../releases) page and download the installer for your platform:
