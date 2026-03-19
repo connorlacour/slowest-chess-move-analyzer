@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chess Think Time Analyzer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">chess.com · your slowest moves</div>
+    <h1>Where'd all the time <em>go?</em></h1>
+    <p class="subtitle">Scans your entire game history to surface the moves you spent the most time thinking about.</p>
+  </header>
+
+  <div class="form-card">
+    <div class="form-grid">
+      <div class="field full">
+        <label>Chess.com Username</label>
+        <input type="text" id="username" placeholder="hikaru" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+
+    <div class="filter-row">
+      <div class="filter-col">
+        <label>Time Class</label>
+        <select id="timeClassSelect" onchange="onClassChange()">
+          <option value="all">All Classes</option>
+          <option value="bullet">Bullet  (&lt; 3 min)</option>
+          <option value="blitz">Blitz  (3–10 min)</option>
+          <option value="rapid">Rapid  (10–30 min)</option>
+        </select>
+      </div>
+
+      <div class="filter-col">
+        <label>Time Controls <span style="font-size:9px;color:var(--muted)">(optional — leave all unchecked for any)</span></label>
+        <div class="checkbox-grid" id="checkboxGrid"></div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:24px;">
+      <div class="filter-col" style="flex:0 0 auto;">
+        <label>Results to show</label>
+        <input type="number" id="resultCount" value="20" min="1" max="50"
+               style="width:100px;"
+               oninput="clampResultCount(this)">
+      </div>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:18px;">max 50</span>
+
+      <div style="width:1px;height:36px;background:var(--border);margin-top:14px;flex-shrink:0;"></div>
+
+      <div class="filter-col" style="flex:0 0 auto;">
+        <label>Start date <span style="font-size:9px;color:var(--muted)">(optional)</span></label>
+        <div class="date-pair">
+          <input type="number" id="dateFromMonth" placeholder="MM" min="1" max="12" onchange="validateDateRange()">
+          <span class="date-sep">/</span>
+          <input type="number" id="dateFromYear" placeholder="YYYY" min="2007" onchange="validateDateRange()">
+        </div>
+      </div>
+      <div class="filter-col" style="flex:0 0 auto;">
+        <label>End date <span style="font-size:9px;color:var(--muted)">(optional)</span></label>
+        <div class="date-pair">
+          <input type="number" id="dateToMonth" placeholder="MM" min="1" max="12" onchange="validateDateRange()">
+          <span class="date-sep">/</span>
+          <input type="number" id="dateToYear" placeholder="YYYY" min="2007" onchange="validateDateRange()">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <button class="btn btn-primary" id="runBtn" onclick="startAnalysis()">Analyze Games</button>
+      <button class="btn btn-secondary" id="stopBtn" style="display:none" onclick="stopAnalysis()">Stop</button>
+    </div>
+  </div>
+
+  <div class="error-box" id="errorBox"></div>
+
+  <div class="progress-block" id="progressBlock">
+    <div class="progress-header">
+      <span class="progress-label">Analyzing archives</span>
+      <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+    <div class="progress-status" id="progressStatus">Fetching archive list…</div>
+    <div class="progress-stats">
+      <div class="pstat"><div class="pstat-val" id="statMonths">0</div><div class="pstat-key">Months</div></div>
+      <div class="pstat"><div class="pstat-val" id="statGames">0</div><div class="pstat-key">Games Scanned</div></div>
+      <div class="pstat"><div class="pstat-val" id="statMatched">0</div><div class="pstat-key">Matched Filter</div></div>
+      <div class="pstat"><div class="pstat-val" id="statMoves">0</div><div class="pstat-key">Moves Parsed</div></div>
+    </div>
+  </div>
+
+  <div class="results-block" id="resultsBlock">
+    <div class="results-header">
+      <div class="results-title">Slowest Moves</div>
+      <div class="results-meta" id="resultsMeta"></div>
+    </div>
+    <div class="moves-list" id="movesList"></div>
+  </div>
+
+</div>
+<script type="module" src="./src/main.ts"></script>
+</body>
+</html>

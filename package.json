@@ -1,0 +1,74 @@
+{
+  "name": "chess-time-analyzer",
+  "version": "1.0.0",
+  "description": "Chess.com think time analyzer",
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "start": "electron-vite preview",
+    "dist": "electron-vite build && electron-builder build",
+    "dist:mac": "electron-vite build && electron-builder build --mac",
+    "dist:win": "electron-vite build && electron-builder build --win",
+    "dist:linux": "electron-vite build && electron-builder build --linux"
+  },
+  "build": {
+    "appId": "com.connorlacour.slowest-chess-move-analyzer",
+    "productName": "Chess Time Analyzer",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*"
+    ],
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "resources/icon.png"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "resources/icon.ico"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "resources/icon.png"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "connorlacour",
+      "repo": "slowest-chess-move-analyzer"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "electron": "^28.0.0",
+    "electron-builder": "^26.8.1",
+    "electron-vite": "^2.0.0",
+    "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.3"
+  }
+}
